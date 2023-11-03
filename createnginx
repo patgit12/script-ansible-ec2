@@ -1,0 +1,22 @@
+- name: Deploy Nginx
+  hosts: webserver
+  remote_user: ubuntu
+  gather_facts: yes
+
+  tasks:
+    - name: Update package cache
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      become: yes
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      become: yes
+      service:
+        name: nginx
+        state: started
