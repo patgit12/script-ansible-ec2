@@ -6,7 +6,7 @@
   <!-- <a href="https://myscripts.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">Myscripts</h1>
+<h1 align="center">Tomcat From Bash to AWS Ec2</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/myscripts?color=56BEB8">
