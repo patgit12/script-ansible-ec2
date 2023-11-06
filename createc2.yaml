@@ -7,7 +7,7 @@
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
         instance_type: t2.micro
-        image_id: ami-0fc5d935ebf8bc3bc
+        image_id: ami-05c13eab67c5d8861
         key_name: keyforDestop
         region: us-east-1
         security_group: launch-wizard-5
@@ -23,11 +23,11 @@
         state: started
       become: no
 
-    - name: Update Your Inventory File
-      community.general.ini_file:
-        dest: /mnt/c/Users/kochf/Downloads/myscripts/hosts
-        section: webserver
-        option: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
-        #option: ec2_instance_ip
-        #value: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
-        allow_no_value: true
+    # - name: Update Your Inventory File
+    #   community.general.ini_file:
+    #     dest: /mnt/c/Users/kochf/Downloads/myscripts/hosts
+    #     section: tomcat
+    #     option: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
+    #     #option: ec2_instance_ip
+    #     #value: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
+    #     allow_no_value: true

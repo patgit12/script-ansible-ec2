@@ -1,4 +1,8 @@
-[webserver:vars]
+[tomcat:vars]
 ansible_ssh_private_key_file=/mnt/keyforDestop.pem
-[webserver]
-184.73.32.180
+[tomcat]
+3.86.142.210
+3.93.234.23
+23.23.13.22
+
+# generated from createec2.yaml

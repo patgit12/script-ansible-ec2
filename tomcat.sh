@@ -20,7 +20,7 @@ fi
 
 done
 if [ -z "$tomvers" ] || [ "$tomvers" = "$default_vers" ]; then
-   link=https://dlcdn.apache.org/tomcat/tomcat-9/v$default_vers/bin/apache-tomcat-$default_vers.zip
+   link="https://dlcdn.apache.org/tomcat/tomcat-9/v$default_vers/bin/apache-tomcat-$default_vers.zip"
 
 else
    link=https://archive.apache.org/dist/tomcat/tomcat-9/v$tomvers/bin/apache-tomcat-$tomvers.zip 
@@ -34,3 +34,6 @@ read password
 
 echo -n "desired role [ manager-gui manager-script separate each role by a coma]: "
 read roles
+
+ansible-playbook createc2.yaml
+ansible-playbook -i awsinvent.aws_ec2.yaml deploytomcat.yaml --extra-vars "link=$link username=$username password=$password myrole=$roles"

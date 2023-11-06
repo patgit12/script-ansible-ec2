@@ -1,0 +1,149 @@
+---
+- name: Configure and Install Tomcat on Amazon Linux EC2
+  hosts: all
+  remote_user: ec2-user
+    
+  vars:
+    username: "admin"
+    roles: "manager-gui,manager-script"
+
+  tasks:
+    - name: Set hostname to 'tomcat'
+      hostname:
+        name: tomcat
+      become: yes
+
+    - name: Install required packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - wget
+        - java-11
+        - unzip
+        - cronie
+      become: yes
+
+    # - name: Stop Tomcat (if running)
+    #   shell: stoptomcat > /dev/null 2>&1
+    #   ignore_errors: yes
+
+    # - name: Remove existing Tomcat installation
+    #   file:
+    #     path: /opt/tomcat9
+    #     state: absent
+    #   ignore_errors: yes
+
+    - name: Change working directory to /opt
+      command: cd /opt
+
+    - name: Download latest Tomcat
+      become: yes
+      shell: |
+        wget {{ link }}
+        unzip apache*.zip
+        rm -rf apache*.zip
+      args:
+        chdir: /opt
+        executable: /bin/bash
+
+    - name: Rename Tomcat for good naming convention
+      become: yes
+      shell: mv apache*[0-9] tomcat9
+      args:
+        chdir: /opt
+      
+
+    - name: Set executable permissions
+      become: yes
+      file:
+        path: /opt/tomcat9
+        recurse: yes
+        mode: '0777'
+      #become_user: ec2-user
+
+    - name: Change ownership to ec2-user
+      become: yes
+      command: chown -R ec2-user /opt/tomcat9
+
+    # - name: Copy file with owner and permissions
+    #   ansible.builtin.copy:
+    #     src: /mnt/c/Users/kochf/Downloads/myscripts/testlnk.sh
+    #     dest: /opt/tomcat9/
+    #     owner: ec2-user
+    #     group: ec2-user
+    #     mode: '0644'
+
+    # - name: Start Tomcat
+    #   ansible.builtin.shell: sh testlnk.sh
+    #   args:
+    #     chdir: /opt/tomcat9/
+    #     executable: /bin/bash
+
+    # - name: Start Tomcat
+    #   shell: sh /opt/tomcat9/bin/startup.sh
+
+    - name: Create a soft link to start and stop Tomcat
+      become: yes
+      file:
+        src: /opt/tomcat9/bin/startup.sh
+        dest: /usr/bin/starttomcat
+        state: link      
+
+    - name: Create a soft link to stop Tomcat
+      become: yes
+      file:
+        src: /opt/tomcat9/bin/shutdown.sh
+        dest: /usr/bin/stoptomcat
+        state: link
+
+    ## because Tomcat service don't start with ansible. the module to start was not implemented. I'lll get the service to start a reboot
+    
+    - name: Insert comment at the beginning of the Valve configuration      
+      lineinfile:
+        path: /opt/tomcat9/webapps/manager/META-INF/context.xml
+        insertbefore: 'Valve'
+        line: '<!-- ' # make sure to put the space after <!--
+        state: present
+
+    - name: Insert comment after the allow section
+      
+      lineinfile:
+        path: /opt/tomcat9/webapps/manager/META-INF/context.xml
+        insertafter: 'allow'
+        line: '--> ' ## make sure to put the space after -->
+        state: present
+    
+    - name: Modify Tomcat Manager tomcat-users.xml
+      lineinfile:
+        path: /opt/tomcat9/conf/tomcat-users.xml
+        insertbefore: '</tomcat-users>'
+        line: '<user username="{{ username }}" password="{{ password }}" roles="{{ roles }}"/>'
+      become: yes
+    
+    - name: Start Crond Service
+      service:
+        name: crond
+        state: started
+      become: yes
+
+    - name: Enable Crond Service at Boot
+      service:
+        name: crond
+        enabled: yes
+      become: yes
+
+    - name: Creates an entry like "@reboot starttomcat"
+      ansible.builtin.cron:
+        name: "a job for reboot"
+        special_time: reboot
+        job: "starttomcat"
+
+
+    - name: Going back to the home folder
+      command: cd      
+    
+    - name: reboot
+      become: yes
+      ansible.builtin.reboot:
