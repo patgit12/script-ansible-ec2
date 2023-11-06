@@ -46,7 +46,7 @@
 
 ## :dart: About ##
 
-Describe your project
+This script is designed to automate the deployment of Apache Tomcat on an AWS EC2 instance using Ansible. It allows you to choose the version of Tomcat to install, specify user credentials, and assign roles for Tomcat management. This README provides an overview of how to use the script and its functionality.
 
 ## :sparkles: Features ##
 
@@ -58,11 +58,8 @@ Describe your project
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Bash](https://expo.io/)
+- [Ansible](https://nodejs.org/en/)
 
 ## :white_check_mark: Requirements ##
 
@@ -72,13 +69,17 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/myscripts
+$ git clone https://github.com/patgit12/script-ansible-ec2
 
 # Access
-$ cd myscripts
+$ cd script-ansible-ec2
 
 # Install dependencies
-$ yarn
+$ WSLv2
+  Boto
+  Boto3
+  python
+  AWSCI
 
 # Run the project
 $ yarn start
