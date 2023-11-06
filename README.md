@@ -63,7 +63,13 @@ The following tools were used in this project:
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+Before using this script, make sure you have the following prerequisites:
+
+Linux Environment: This script is designed to run on a Linux environment, specifically using the Bash shell.
+
+Curl: Ensure that Curl is installed on your system, as it is used to retrieve the latest Tomcat version and download the installation package.
+
+Ansible: You must have Ansible installed and configured on your machine. Ansible is used to automate the deployment process.
 
 ## :checkered_flag: Starting ##
 
