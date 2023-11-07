@@ -82,7 +82,7 @@ $ cd script-ansible-ec2
 
 # Install dependencies
 $ WSLv2
-  [Boto](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
+- [Boto](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
   Boto3
   python
   AWSCI
