@@ -60,7 +60,6 @@ The following tools were used in this project:
 
 - [Bash](https://expo.io/)
 - [Ansible](https://nodejs.org/en/)
-- [boto](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 
 ## :white_check_mark: Requirements ##
 
@@ -83,7 +82,7 @@ $ cd script-ansible-ec2
 
 # Install dependencies
 $ WSLv2
-- [Boto](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
+  Boto
   Boto3
   python
   AWSCI
