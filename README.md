@@ -9,7 +9,7 @@
 <h1 align="center">Deploy Tomcat From Your Desktop to AWS EC2</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/patgit12/myscripts?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/patgit12/script-ansible-ec2?color=56BEB8">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/myscripts?color=56BEB8">
 
