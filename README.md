@@ -11,7 +11,7 @@
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/patgit12/script-ansible-ec2?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/myscripts?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/patgit12/script-ansible-ec2?color=56BEB8">
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/myscripts?color=56BEB8">
 
