@@ -1,0 +1,187 @@
+ok: [localhost] => {
+    "ec2": {
+        "changed": true,
+        "failed": false,
+        "instance_ids": [
+            "i-0a941657d24ee4803"
+        ],
+        "instances": [
+            {
+                "ami_launch_index": 0,
+                "architecture": "x86_64",
+                "block_device_mappings": [
+                    {
+                        "device_name": "/dev/xvda",
+                        "ebs": {
+                            "attach_time": "2023-11-08T17:33:45+00:00",
+                            "delete_on_termination": true,
+                            "status": "attaching",
+                            "volume_id": "vol-09e2d9d711cc887e8"
+                        }
+                    }
+                ],
+                "boot_mode": "uefi-preferred",
+                "capacity_reservation_specification": {
+                    "capacity_reservation_preference": "open"
+                },
+                "client_token": "0333cb8b45694e05b17499e2c505f460",
+                "cpu_options": {
+                    "core_count": 1,
+                    "threads_per_core": 1
+                },
+                "current_instance_boot_mode": "legacy-bios",
+                "ebs_optimized": false,
+                "ena_support": true,
+                "enclave_options": {
+                    "enabled": false
+                },
+                "hibernation_options": {
+                    "configured": false
+                },
+                "hypervisor": "xen",
+                "image_id": "ami-05c13eab67c5d8861",
+                "instance_id": "i-0a941657d24ee4803",
+                "instance_type": "t2.micro",
+                "key_name": "keyforDestop",
+                "launch_time": "2023-11-08T17:33:44+00:00",
+                "maintenance_options": {
+                    "auto_recovery": "default"
+                },
+                "metadata_options": {
+                    "http_endpoint": "enabled",
+                    "http_protocol_ipv6": "disabled",
+                    "http_put_response_hop_limit": 2,
+                    "http_tokens": "required",
+                    "instance_metadata_tags": "disabled",
+                    "state": "pending"
+                },
+                "monitoring": {
+                    "state": "disabled"
+                },
+                "network_interfaces": [
+                    {
+                        "association": {
+                            "ip_owner_id": "amazon",
+                            "public_dns_name": "ec2-54-205-19-160.compute-1.amazonaws.com",
+                            "public_ip": "54.205.19.160"
+                        },
+                        "attachment": {
+                            "attach_time": "2023-11-08T17:33:44+00:00",
+                            "attachment_id": "eni-attach-08ae79f0c291825d5",
+                            "delete_on_termination": true,
+                            "device_index": 0,
+                            "network_card_index": 0,
+                            "status": "attaching"
+                        },
+                        "description": "",
+                        "groups": [
+                            {
+                                "group_id": "sg-0d6014007cf52cdc6",
+                                "group_name": "launch-wizard-5"
+                            }
+                        ],
+                        "interface_type": "interface",
+                        "ipv6_addresses": [],
+                        "mac_address": "12:d6:19:2b:25:05",
+                        "network_interface_id": "eni-0dfdc0dec70515189",
+                        "owner_id": "663522928221",
+                        "private_dns_name": "ip-172-31-95-4.ec2.internal",
+                        "private_ip_address": "172.31.95.4",
+                        "private_ip_addresses": [
+                            {
+                                "association": {
+                                    "ip_owner_id": "amazon",
+                                    "public_dns_name": "ec2-54-205-19-160.compute-1.amazonaws.com",
+                                    "public_ip": "54.205.19.160"
+                                },
+                                "primary": true,
+                                "private_dns_name": "ip-172-31-95-4.ec2.internal",
+                                "private_ip_address": "172.31.95.4"
+                            }
+                        ],
+                        "source_dest_check": true,
+                        "status": "in-use",
+                        "subnet_id": "subnet-0c9e0ae9194adff00",
+                        "vpc_id": "vpc-00930ed68e558b0ae"
+                    }
+                ],
+                "placement": {
+                    "availability_zone": "us-east-1a",
+                    "group_name": "",
+                    "tenancy": "default"
+                },
+                "platform_details": "Linux/UNIX",
+                "private_dns_name": "ip-172-31-95-4.ec2.internal",
+                "private_dns_name_options": {
+                    "enable_resource_name_dns_a_record": false,
+                    "enable_resource_name_dns_aaaa_record": false,
+                    "hostname_type": "ip-name"
+                },
+                "private_ip_address": "172.31.95.4",
+                "product_codes": [],
+                "public_dns_name": "ec2-54-205-19-160.compute-1.amazonaws.com",
+                "public_ip_address": "54.205.19.160",
+                "root_device_name": "/dev/xvda",
+                "root_device_type": "ebs",
+                "security_groups": [
+                    {
+                        "group_id": "sg-0d6014007cf52cdc6",
+                        "group_name": "launch-wizard-5"
+                    }
+                ],
+                "source_dest_check": true,
+                "state": {
+                    "code": 0,
+                    "name": "pending"
+                },
+                "state_transition_reason": "",
+                "subnet_id": "subnet-0c9e0ae9194adff00",
+                "tags": {
+                    "Name": "Tom-instance"
+                },
+                "usage_operation": "RunInstances",
+                "usage_operation_update_time": "2023-11-08T17:33:44+00:00",
+                "virtualization_type": "hvm",
+                "vpc_id": "vpc-00930ed68e558b0ae"
+            }
+        ],
+        "spec": {
+            "BlockDeviceMappings": [],
+            "ClientToken": "0333cb8b45694e05b17499e2c505f460",
+            "ImageId": "ami-05c13eab67c5d8861",
+            "InstanceType": "t2.micro",
+            "KeyName": "keyforDestop",
+            "MaxCount": 1,
+            "MinCount": 1,
+            "NetworkInterfaces": [
+                {
+                    "DeviceIndex": 0,
+                    "Groups": [
+                        "sg-0d6014007cf52cdc6"
+                    ],
+                    "SubnetId": "subnet-0c9e0ae9194adff00"
+                }
+            ],
+            "TagSpecifications": [
+                {
+                    "ResourceType": "volume",
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "Tom-instance"
+                        }
+                    ]
+                },
+                {
+                    "ResourceType": "instance",
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "Tom-instance"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

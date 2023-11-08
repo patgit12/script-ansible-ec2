@@ -16,9 +16,13 @@
           Name: Tom-instance
       register: ec2
 
+    - name: Display all variables/facts known for ec2
+      ansible.builtin.debug:
+        var: ec2
+  
+
     - name: Wait for SSH to become available
       wait_for:
-        host: "{{ ec2.interfaces[0].association.public_ip }}"
+        host: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
         port: 22
         state: started         
-
