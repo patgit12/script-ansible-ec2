@@ -5,7 +5,7 @@
     
   vars:
     username: "admin"
-    roles: "manager-gui,manager-script"
+    userroles: "manager-gui,manager-script"
 
   tasks:
     - name: Set hostname to 'tomcat'

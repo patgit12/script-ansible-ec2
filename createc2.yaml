@@ -18,7 +18,7 @@
 
     - name: Wait for SSH to become available
       wait_for:
-        host: "{{ item.network_interfaces[0].association.public_ip }}"
+        host: "{{ ec2.interfaces[0].association.public_ip }}"
         port: 22
         state: started         
 
