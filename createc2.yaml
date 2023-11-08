@@ -13,22 +13,12 @@
         security_group: launch-wizard-5
         count: 1
         tags:
-          Name: my-ec2-instance
-          state: provisioned
+          Name: Tom-instance
       register: ec2
 
     - name: Wait for SSH to become available
       wait_for:
-        host: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
+        host: "{{ item.network_interfaces[0].association.public_ip }}"
         port: 22
-        state: started
-      become: no
+        state: started         
 
-    # - name: Update Your Inventory File
-    #   community.general.ini_file:
-    #     dest: /mnt/c/Users/kochf/Downloads/myscripts/hosts
-    #     section: tomcat
-    #     option: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
-    #     #option: ec2_instance_ip
-    #     #value: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
-    #     allow_no_value: true

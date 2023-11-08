@@ -1,0 +1,54 @@
+    # - name: Start Crond Service
+    #   service:
+    #     name: crond
+    #     state: started
+    #   become: yes
+
+    # - name: Enable Crond Service at Boot
+    #   service:
+    #     name: crond
+    #     enabled: yes
+    #   become: yes
+
+    # - name: Creates an entry like "@reboot starttomcat"
+    #   ansible.builtin.cron:
+    #     name: "a job for reboot"
+    #     special_time: reboot
+    #     job: "starttomcat"
+
+
+    # - name: Update Your Inventory File
+    #   community.general.ini_file:
+    #     dest: /mnt/c/Users/kochf/Downloads/myscripts/hosts
+    #     section: tomcat
+    #     option: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
+    #     #option: ec2_instance_ip
+    #     #value: "{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
+    #     allow_no_value: true
+
+
+    # - name: assign a tag to the resource
+    #   amazon.aws.ec2_tag:
+    #     region:  eu-west-1
+    #     resource: '{{ item.InstanceId }}'
+    #     state: present
+    #     tags:
+    #       Env: provision
+    #     filters:
+    #       "Name": "startswith:tomcat"
+    #   loop: '{{ ec2.instances }}'
+    
+    # - name: reboot
+    #   become: yes
+    #   ansible.builtin.reboot:
+
+        # - name: Stop Tomcat (if running)
+    #   shell: stoptomcat > /dev/null 2>&1
+    #   ignore_errors: yes
+
+    # - name: Remove existing Tomcat installation
+    #   file:
+    #     path: /opt/tomcat9
+    #     state: absent
+    #   ignore_errors: yes
+
