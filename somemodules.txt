@@ -52,3 +52,13 @@
     #     state: absent
     #   ignore_errors: yes
 
+    # fact_filters:
+#   - "@tag_env = provision"
+
+# Filters:
+# tag:Env: provision
+
+# exclude_filters:
+# - tag:Env:
+#   - 'provision'
+
