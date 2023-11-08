@@ -16,9 +16,9 @@
           Name: Tom-instance
       register: ec2
 
-    - name: Display all variables/facts known for ec2
-      ansible.builtin.debug:
-        var: ec2
+    # - name: Display all variables/facts known for ec2
+    #   ansible.builtin.debug:
+    #     var: ec2
   
 
     - name: Wait for SSH to become available
