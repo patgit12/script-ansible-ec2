@@ -39,6 +39,6 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 
 ansible-playbook createc2.yaml
 
-ansible-playbook -i awsinvent.aws_ec2.yaml deploytomcat.yaml --extra-vars "link=$link username=$username password=$password myrole=$userroles"
+ansible-playbook -i awsinvent.aws_ec2.yaml deploytomcat.yaml --extra-vars "link=$link username=$username password=$password myroles=$userroles"
 
 # I couln't use one playbook with include module because the inventory would be empty at start( tested and confirmed)

@@ -5,7 +5,7 @@
     
   vars:
     username: "admin"
-    userroles: "manager-gui,manager-script"
+    myroles: "manager-gui,manager-script"
 
   tasks:
     - name: Set hostname to 'tomcat'
@@ -112,7 +112,7 @@
       lineinfile:
         path: /opt/tomcat9/conf/tomcat-users.xml
         insertbefore: '</tomcat-users>'
-        line: '<user username="{{ username }}" password="{{ password }}" roles="{{ roles }}"/>'
+        line: '<user username="{{ username }}" password="{{ password }}" roles="{{ myroles }}"/>'
       become: yes
 
     - name: Going back to the home folder
