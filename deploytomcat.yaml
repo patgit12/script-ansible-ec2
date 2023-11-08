@@ -67,23 +67,6 @@
       become: yes
       command: chown -R ec2-user /opt/tomcat9
 
-    # - name: Copy file with owner and permissions
-    #   ansible.builtin.copy:
-    #     src: /mnt/c/Users/kochf/Downloads/myscripts/testlnk.sh
-    #     dest: /opt/tomcat9/
-    #     owner: ec2-user
-    #     group: ec2-user
-    #     mode: '0644'
-
-    # - name: Start Tomcat
-    #   ansible.builtin.shell: sh testlnk.sh
-    #   args:
-    #     chdir: /opt/tomcat9/
-    #     executable: /bin/bash
-
-    # - name: Start Tomcat
-    #   shell: sh /opt/tomcat9/bin/startup.sh
-
     - name: Create a soft link to start and stop Tomcat
       become: yes
       file:
@@ -99,6 +82,24 @@
         state: link
 
     ## because Tomcat service don't start with ansible. the module to start was not implemented. I'lll get the service to start a reboot
+    - name: Copy file with owner and permissions
+      become: yes
+      ansible.builtin.copy:      
+        src: /mnt/c/Users/kochf/Downloads/myscripts/tomcat.service
+        dest: /etc/systemd/system/
+  
+
+    - name: Start Tomcat Service
+      become: yes
+      systemd:
+        name: tomcat.service
+        state: started
+
+    - name: Enable Tomcat Service at Boot
+      become: yes
+      systemd:
+        name: tomcat.service
+        enabled: yes
     
     - name: Insert comment at the beginning of the Valve configuration      
       lineinfile:
@@ -122,28 +123,28 @@
         line: '<user username="{{ username }}" password="{{ password }}" roles="{{ roles }}"/>'
       become: yes
     
-    - name: Start Crond Service
-      service:
-        name: crond
-        state: started
-      become: yes
+    # - name: Start Crond Service
+    #   service:
+    #     name: crond
+    #     state: started
+    #   become: yes
 
-    - name: Enable Crond Service at Boot
-      service:
-        name: crond
-        enabled: yes
-      become: yes
+    # - name: Enable Crond Service at Boot
+    #   service:
+    #     name: crond
+    #     enabled: yes
+    #   become: yes
 
-    - name: Creates an entry like "@reboot starttomcat"
-      ansible.builtin.cron:
-        name: "a job for reboot"
-        special_time: reboot
-        job: "starttomcat"
+    # - name: Creates an entry like "@reboot starttomcat"
+    #   ansible.builtin.cron:
+    #     name: "a job for reboot"
+    #     special_time: reboot
+    #     job: "starttomcat"
 
 
     - name: Going back to the home folder
       command: cd      
     
-    - name: reboot
-      become: yes
-      ansible.builtin.reboot:
+    # - name: reboot
+    #   become: yes
+    #   ansible.builtin.reboot:

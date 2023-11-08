@@ -14,6 +14,7 @@
         count: 1
         tags:
           Name: my-ec2-instance
+          state: provisioned
       register: ec2
 
     - name: Wait for SSH to become available
