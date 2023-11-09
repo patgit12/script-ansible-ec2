@@ -4,11 +4,12 @@
   remote_user: ec2-user
     
   vars:
-    username: "admin"
-    myroles: "manager-gui,manager-script"
-    userport: "8080"
+    #username: "admin"
+    #myroles: "manager-gui,manager-script"
+    #userport: "8080"
 
-  tasks:
+  tasks:   
+
     - name: Set hostname to 'tomcat'
       hostname:
         name: tomcat
@@ -26,10 +27,8 @@
         - cronie
       become: yes
 
-
-
-    - name: Change working directory to /opt
-      command: cd /opt
+    # - name: Change working directory to /opt
+    #   command: cd /opt
 
     - name: Download latest Tomcat
       become: yes
@@ -58,21 +57,7 @@
 
     - name: Change ownership to ec2-user
       become: yes
-      command: chown -R ec2-user /opt/tomcat9
-
-    - name: Create a soft link to start and stop Tomcat
-      become: yes
-      file:
-        src: /opt/tomcat9/bin/startup.sh
-        dest: /usr/bin/starttomcat
-        state: link      
-
-    - name: Create a soft link to stop Tomcat
-      become: yes
-      file:
-        src: /opt/tomcat9/bin/shutdown.sh
-        dest: /usr/bin/stoptomcat
-        state: link
+      command: chown -R ec2-user /opt/tomcat9   
     
 
     - name: Set up the tomcat port
@@ -85,7 +70,7 @@
 
 
 
-    - name: Copy file with owner and permissions
+    - name: Copy tomcat.service to system
       become: yes
       ansible.builtin.copy:      
         src: /mnt/c/Users/kochf/Downloads/myscripts/tomcat.service
@@ -104,28 +89,26 @@
         name: tomcat.service
         enabled: yes
     
-    - name: Insert comment at the beginning of the Valve configuration      
+    - name: Start commenting before Valve      
       lineinfile:
         path: /opt/tomcat9/webapps/manager/META-INF/context.xml
         insertbefore: 'Valve'
         line: '<!-- ' # make sure to put the space after <!--
         state: present
 
-    - name: Insert comment after the allow section
-      
+    - name: Close the comment after the allow section      
       lineinfile:
         path: /opt/tomcat9/webapps/manager/META-INF/context.xml
         insertafter: 'allow'
         line: '--> ' ## make sure to put the space after -->
         state: present
     
-    - name: Modify Tomcat Manager tomcat-users.xml
+    - name: Modify tomcat-users.xml
       lineinfile:
         path: /opt/tomcat9/conf/tomcat-users.xml
         insertbefore: '</tomcat-users>'
         line: '<user username="{{ username }}" password="{{ password }}" roles="{{ myroles }}"/>'
-      become: yes
+      become: yes    
 
     - name: Going back to the home folder
       command: cd
-

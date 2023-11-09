@@ -3,7 +3,8 @@
   hosts: localhost
   gather_facts: no  # Disable gathering facts for localhost
 
-  tasks:
+  tasks:    
+
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
         instance_type: t2.micro
@@ -24,6 +25,7 @@
         state: started 
       loop: "{{ec2.instances}}"  
 
+    
     - name: example ec2 group
       amazon.aws.ec2_security_group:
         name: launch-wizard-5

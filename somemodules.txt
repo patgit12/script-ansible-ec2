@@ -79,3 +79,48 @@
     #     state: started 
     #   loop: "{{ansible_play_batch}}"
 
+
+- name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ./latesttom
+        dest: /home/linvm
+        owner: linvm
+        group: linvm
+        mode: '0644'
+
+ # - name: Show all the hosts in the current play
+    #   ansible.builtin.debug:
+    #     msg: "{{ item }}"
+    #   loop: "{{ ansible_play_batch }}"
+    #   register: newinstance
+    
+    # - name: Gather information about a particular instance using ID
+    #   amazon.aws.ec2_instance_info:
+    #     filters:
+    #       dns-name: newinstance.msg
+
+    - name: assign a tag to the resource
+    #   amazon.aws.ec2_tag:
+    #     region:  us-east-1
+    #     resource: '{{ item.InstanceId }}'
+    #     state: present
+    #     tags:
+    #       Env: provision
+    #     filters:
+    #       "Name": "startswith:tomcat"
+    #   loop: '{{ ec2.instances }}'
+
+
+     # - name: Create a soft link to start and stop Tomcat
+    #   become: yes
+    #   file:
+    #     src: /opt/tomcat9/bin/startup.sh
+    #     dest: /usr/bin/starttomcat
+    #     state: link      
+
+    # - name: Create a soft link to stop Tomcat
+    #   become: yes
+    #   file:
+    #     src: /opt/tomcat9/bin/shutdown.sh
+    #     dest: /usr/bin/stoptomcat
+    #     state: link
