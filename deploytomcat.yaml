@@ -54,7 +54,7 @@
         path: /opt/tomcat9
         recurse: yes
         mode: '0777'
-      #become_user: ec2-user
+      
 
     - name: Change ownership to ec2-user
       become: yes
@@ -83,16 +83,7 @@
         regexp: '8080'
         replace: '{{userport}}'
 
-    # - name: example ec2 group
-    #   amazon.aws.ec2_security_group:
-    #     name: launch-wizard-5
-    #     description: my security group
-    #     rules:
-    #       - proto: tcp
-    #         from_port: "{{userport}}"
-    #         to_port: "{{userport}}"
-    #         group_id: launch-wizard-5
-    #         cidr_ip: 0.0.0.0/0
+
 
     - name: Copy file with owner and permissions
       become: yes

@@ -16,23 +16,7 @@
           Name: Tom-instance
       register: ec2
 
-    # - name: Show all the hosts in the current play
-    #   ansible.builtin.debug:
-    #     msg: "{{ item }}"
-    #   loop: "{{ ansible_play_batch }}"
-
-    # - name: Display all variables/facts known for ec2
-    #   ansible.builtin.debug:
-    #     var: ec2
-  
-
-    # - name: Wait for SSH to become available
-    #   wait_for:
-    #     host: "{{ item }}" #"{{ ec2.instances[0].network_interfaces[0].association.public_ip }}"
-    #     port: 22
-    #     state: started 
-    #   loop: "{{ansible_play_batch}}"        
-
+    
     - name: Wait for SSH to become available
       wait_for:
         host: "{{ item.network_interfaces[0].association.public_ip }}"
@@ -49,5 +33,4 @@
           - proto: tcp
             from_port: "{{userport}}"
             to_port: "{{userport}}"
-            #group_name: launch-wizard-5
             cidr_ip: 0.0.0.0/0
