@@ -6,6 +6,7 @@
   vars:
     username: "admin"
     myroles: "manager-gui,manager-script"
+    userport: "8080"
 
   tasks:
     - name: Set hostname to 'tomcat'
@@ -72,8 +73,27 @@
         src: /opt/tomcat9/bin/shutdown.sh
         dest: /usr/bin/stoptomcat
         state: link
-
     
+
+    - name: Set up the tomcat port
+      ansible.builtin.replace:
+        path: /opt/tomcat9/conf/server.xml
+        after: '\s+Define a non-SSL/TLS HTTP/1.1 Connector on port 8080'
+        before: '\s+connectionTimeout="20000"'
+        regexp: '8080'
+        replace: '{{userport}}'
+
+    # - name: example ec2 group
+    #   amazon.aws.ec2_security_group:
+    #     name: launch-wizard-5
+    #     description: my security group
+    #     rules:
+    #       - proto: tcp
+    #         from_port: "{{userport}}"
+    #         to_port: "{{userport}}"
+    #         group_id: launch-wizard-5
+    #         cidr_ip: 0.0.0.0/0
+
     - name: Copy file with owner and permissions
       become: yes
       ansible.builtin.copy:      
