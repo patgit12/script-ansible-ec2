@@ -12,10 +12,23 @@
         key_name: keyforDestop
         region: us-east-1
         security_group: launch-wizard-5
-        count: 1
+        count: "{{nmachines}}"
         tags:
-          Name: Tom-instance
+          Name: "{{nameofec2}}"
       register: ec2
+
+    - name: Set up the the ec2s tabs
+      ansible.builtin.lineinfile:
+        path: /mnt/c/Users/kochf/Downloads/myscripts/awsinvent.aws_ec2.yaml
+        regexp: '^\s+tag:Name:'
+        line: '  tag:Name: "{{nameofec2}}"'
+
+
+      # ansible.builtin.replace:
+      #   path: /mnt/c/Users/kochf/Downloads/myscripts/awsinvent.aws_ec2.yaml
+      #   after: 'filters:'
+      #   regexp: 'Tomcat'
+      #   replace: '{{nameofec2}}'
 
     
     - name: Wait for SSH to become available

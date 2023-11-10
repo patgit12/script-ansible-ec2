@@ -38,9 +38,16 @@ read userroles
 echo -n "Server port: "
 read userport
 
+echo -n "Number of Servers: "
+read nmachines
+
+echo -n "Server Name: "
+read nameofec2
+
+
 export ANSIBLE_HOST_KEY_CHECKING=False
 
-ansible-playbook createc2.yaml --extra-vars "userport=$userport"
+ansible-playbook createc2.yaml --extra-vars "userport=$userport nmachines=$nmachines nameofec2=$nameofec2"
 
 
 ansible-playbook -i awsinvent.aws_ec2.yaml deploytomcat.yaml --extra-vars "link=$link username=$username password=$password myroles=$userroles userport=$userport"

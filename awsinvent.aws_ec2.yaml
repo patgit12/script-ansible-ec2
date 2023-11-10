@@ -1,8 +1,8 @@
 plugin: amazon.aws.aws_ec2 #make sure that the filename ends with aws_ec2.yaml
 regions:
   - us-east-1
-exclude_filters:
-- tag:Env:
-  - 'provision'
+filters:
+  tag:Name: "Tomcat944"
+
 
 # It's linked to the group variable located in .group_vars/aws_ec2.yaml
