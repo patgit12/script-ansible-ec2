@@ -50,7 +50,10 @@ This script is designed to automate the deployment of Apache Tomcat on an AWS EC
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
+:heavy_check_mark: Dynamic Tomcat Version Selection:
+
+The script fetches the latest Tomcat version from the Apache Tomcat website.
+Allows the user to specify the Tomcat version they want to install or uses the default version.\
 :heavy_check_mark: Feature 2;\
 :heavy_check_mark: Feature 3;
 
@@ -58,8 +61,7 @@ This script is designed to automate the deployment of Apache Tomcat on an AWS EC
 
 The following tools were used in this project:
 
-- [Bash](https://expo.io/)
-- [Ansible](https://nodejs.org/en/)
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 ## :white_check_mark: Requirements ##
 
@@ -81,16 +83,13 @@ $ git clone https://github.com/patgit12/script-ansible-ec2
 $ cd script-ansible-ec2
 
 # Install dependencies
-$ WSLv2
-  Boto
-  Boto3
-  python
-  AWSCI
+$ pip install boto boto3 botocore ansible
+$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 
-# Run the project
-$ yarn start
+$ sudo ./aws/install
 
-# The server will initialize in the <http://localhost:3000>
 ```
 
 ## :memo: License ##
