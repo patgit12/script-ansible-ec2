@@ -93,7 +93,7 @@ Allows users to easily customize the script for their needs, such as modifying A
 
 The following tools were used in this project:
 
-- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+- [WSL for Windows Users](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 ## :white_check_mark: Requirements ##
 
