@@ -54,8 +54,40 @@ This script is designed to automate the deployment of Apache Tomcat on an AWS EC
 
 The script fetches the latest Tomcat version from the Apache Tomcat website.
 Allows the user to specify the Tomcat version they want to install or uses the default version.\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+
+
+:heavy_check_mark: User Interaction:
+
+Prompts the user to input their desired username and password for Tomcat's manager-gui and manager-script roles.
+Asks the user to specify the desired roles for Tomcat, such as manager-gui, manager-script, etc., separating each role by a comma.\
+
+:heavy_check_mark: Version Validation:
+
+Validates the specified Tomcat version by checking its availability on the Apache Tomcat website. If the version is not found, the user is prompted to choose a different version.\
+
+:heavy_check_mark: Deployment on AWS EC2:
+
+Utilizes Ansible playbooks (createc2.yaml and deploytomcat.yaml) for deploying on AWS EC2 instances.
+Disables Ansible's host key checking to prevent SSH connection issues. \
+
+:heavy_check_mark: Dynamic Download Link Generation:
+
+Generates the download link for the specified Tomcat version or uses a default link if no specific version is provided.
+Handles both the case when the specified version is available on the Apache Tomcat website and when using the default version.\
+
+:heavy_check_mark: User-Friendly Prompts:
+
+Provides clear prompts and messages during the execution of the script, guiding the user through the deployment process.\
+
+
+:heavy_check_mark: Customization:
+
+Allows users to easily customize the script for their needs, such as modifying Ansible playbooks or adapting the script for different environments;
+
+
+
+
+
 
 ## :rocket: Technologies ##
 
