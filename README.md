@@ -129,7 +129,7 @@ $ sudo ./aws/install
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/{{github_username}}" target="_blank">Patrick O</a>
+Made with :heart: by <a href="https://github.com/patgit12" target="_blank">Patrick O</a>
 
 &#xa0;
 
