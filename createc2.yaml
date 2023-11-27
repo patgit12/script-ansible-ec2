@@ -17,6 +17,10 @@
           Name: "{{nameofec2}}"
       register: ec2
 
+    - name: verifying the content of ec2
+      ansible.builtin.debug:
+        var: ec2
+
     - name: Set up the the ec2s tags
       ansible.builtin.lineinfile:
         path: /mnt/c/Users/kochf/Downloads/myscripts/awsinvent.aws_ec2.yaml
@@ -24,19 +28,12 @@
         line: '  tag:Name: "{{nameofec2}}"'
 
 
-      # ansible.builtin.replace:
-      #   path: /mnt/c/Users/kochf/Downloads/myscripts/awsinvent.aws_ec2.yaml
-      #   after: 'filters:'
-      #   regexp: 'Tomcat'
-      #   replace: '{{nameofec2}}'
-
-    
-    - name: Wait for SSH to become available
+    - name: Wait for the Ec2(s) to become available (to be SSH on)
       wait_for:
         host: "{{ item.network_interfaces[0].association.public_ip }}"
         port: 22
         state: started 
-      loop: "{{ec2.instances}}"  
+      loop: "{{ec2.instances}}" # This is looping through the ec2.instances loop. You can see that list by using ansible debug var. This is similar to what ansible documentation mentionned by loop {{ some_list }}
 
     
     - name: example ec2 group
