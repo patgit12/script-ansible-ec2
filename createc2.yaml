@@ -17,10 +17,6 @@
           Name: "{{nameofec2}}"
       register: ec2
 
-    - name: verifying the content of ec2
-      ansible.builtin.debug:
-        var: ec2
-
     - name: Set up the the ec2s tags
       ansible.builtin.lineinfile:
         path: /mnt/c/Users/kochf/Downloads/myscripts/awsinvent.aws_ec2.yaml
