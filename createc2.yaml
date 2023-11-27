@@ -17,7 +17,7 @@
           Name: "{{nameofec2}}"
       register: ec2
 
-    - name: Set up the the ec2s tags
+    - name: Filtering the dynamic inventory to the ec2 tags
       ansible.builtin.lineinfile:
         path: /mnt/c/Users/kochf/Downloads/myscripts/awsinvent.aws_ec2.yaml
         regexp: '^\s+tag:Name:'
