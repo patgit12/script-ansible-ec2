@@ -29,7 +29,7 @@
         host: "{{ item.network_interfaces[0].association.public_ip }}"
         port: 22
         state: started 
-      loop: "{{ec2.instances}}" # This is looping through the ec2.instances loop. You can see that list by using ansible debug var. This is similar to what ansible documentation mentionned by loop {{ some_list }}
+      loop: "{{ec2.instances}}" # This is looping through the ec2.instances loop. You can see that list by using ansible debug var. This is similar to what ansible documentation mentionned by loop {{ some_list }} : https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html
 
     
     - name: example ec2 group
